@@ -1,4 +1,12 @@
+"use client";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faExpand } from "@fortawesome/free-solid-svg-icons";
+import { useState } from "react";
+
 export default function Home() {
+  const [height, setHeight] = useState("300px"); // Initial height in pixels
+
   const textAreaContent = `# Welcome to my React Markdown Previewer!
 
 ## This is a sub-heading...
@@ -42,17 +50,38 @@ And here. | Okay. | I think we get it.
 1. And last but not least, let's not forget embedded images
 `;
 
+  const handleDivSize = () => {
+    const textarea = document.querySelector("textarea");
+
+    if (textarea) {
+      const textScrollHeight = textarea.scrollHeight + 5; // Adding a small buffer
+
+      if (height === "300px") {
+        setHeight(`${textScrollHeight}px`); // Set to resize based on content
+      } else {
+        setHeight("300px"); // Set to fixed height
+      }
+    }
+  };
+
   return (
-    <div className="min-h-screen p-4 pb-20 font-[family-name:var(--font-montserrat)] font-medium">
+    <div className="min-h-screen p-4 font-[family-name:var(--font-montserrat)] font-medium">
       <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <div className="w-[550px] h-[250px] mx-auto">
-          <div className=" pl-1 font-mono text-base font-bold border border-solid border-black w-[550px] h-[25px] bg-[#4aa3a3] drop-shadow-lg">
+        <div className="w-[550px] h-auto mx-auto">
+          <div className="flex justify-between pl-1 mt-2 font-mono text-base font-bold border border-solid border-black w-[550px] h-[25px] bg-[#4aa3a3] drop-shadow-custom-dark">
             Editor
+            <button
+              className=" text-black hover:text-[#62d8d8] transition pr-1"
+              onClick={handleDivSize}
+            >
+              <FontAwesomeIcon icon={faExpand} className="text-xl" />
+            </button>
           </div>
           <textarea
             name="textEditor"
             id="editor"
-            className="p-2 border border-solid border-black w-full h-full min-h-[250px] drop-shadow-lg bg-[#bce2e2] text-sm font-mono focus:outline-none"
+            className="overflow-auto p-2 border border-solid border-black  drop-shadow-custom-dark bg-[#bce2e2] text-sm font-mono focus:outline-none"
+            style={{ height: `${height}`, width: "100%" }}
             defaultValue={textAreaContent}
           ></textarea>
         </div>

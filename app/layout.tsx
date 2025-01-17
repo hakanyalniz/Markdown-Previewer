@@ -1,6 +1,11 @@
+import { config } from "@fortawesome/fontawesome-svg-core";
+import "@fortawesome/fontawesome-svg-core/styles.css"; // Import Font Awesome's base styles
+
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import "./globals.css";
+
+config.autoAddCss = false; // Disable auto-adding CSS to avoid conflicts
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -20,7 +25,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${montserrat.variable} antialiased`}>{children}</body>
+      <body className={`${montserrat.variable} antialiased h-screen`}>
+        {children}
+      </body>
     </html>
   );
 }

@@ -12,6 +12,9 @@ export default {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      dropShadow: {
+        "custom-dark": "0 0 8px rgba(0, 0, 0, 0.5)", // 50% opacity drop shadow large, with shadow all around
+      },
     },
   },
   plugins: [],
