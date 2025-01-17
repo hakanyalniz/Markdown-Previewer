@@ -12,3 +12,19 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+@layer components {
+  /* Targeting the inline-start border color for elements inside prose */
+  .prose blockquote {
+    border-inline-start-color: black;
+  }
+
+  /* Optional: if you want to also change the border color of other elements in the prose */
+  .prose table,
+  .prose th,
+  .prose td,
+  .prose tr {
+    border: 2px solid #000000;
+    padding: 5px;
+  }
+}
