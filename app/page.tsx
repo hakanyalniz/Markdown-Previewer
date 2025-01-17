@@ -57,7 +57,7 @@ And here. | Okay. | I think we get it.
   const [inputText, setInputText] = useState(firstTextAreaContent);
 
   const handleFirstSize = () => {
-    const textarea = document.getElementById("firstScreen");
+    const textarea = document.getElementById("editor");
 
     if (textarea) {
       const textScrollHeight = textarea.scrollHeight + 5; // Adding a small buffer
@@ -71,10 +71,10 @@ And here. | Okay. | I think we get it.
   };
 
   const handleSecondSize = () => {
-    const textarea = document.getElementById("secondScreen");
+    const textarea = document.getElementById("preview");
 
     if (textarea) {
-      const textScrollHeight = textarea.scrollHeight + 5; // Adding a small buffer
+      const textScrollHeight = textarea.scrollHeight + 100; // Adding a small buffer
 
       if (secondHeight === "800px") {
         setSecondHeight(`${textScrollHeight}px`); // Set to resize based on content
@@ -84,7 +84,7 @@ And here. | Okay. | I think we get it.
     }
   };
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setInputText(e.target.value);
   };
 
@@ -95,7 +95,7 @@ And here. | Okay. | I think we get it.
           <div className="flex justify-between pl-1 mt-2 font-mono text-base font-bold border border-solid border-black w-[550px] h-[25px] bg-[#4aa3a3] drop-shadow-custom-dark">
             Editor
             <button
-              className=" text-black hover:text-[#62d8d8] transition pr-1"
+              className="text-black hover:text-[#62d8d8] transition pr-1"
               onClick={handleFirstSize}
             >
               <FontAwesomeIcon icon={faExpand} className="text-xl" />
@@ -134,7 +134,6 @@ And here. | Okay. | I think we get it.
             ></div>
           </div>
         </div>
-        <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
       </main>
     </div>
   );
